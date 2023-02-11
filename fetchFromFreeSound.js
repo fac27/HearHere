@@ -1,18 +1,17 @@
 import { key } from "./secret.js";
 
-let countryOne = ""
+let countryOne = "China"
 let countryTwo = ""
 
 async function getCountrySounds(countryOne) {
     try {
       const response = await fetch(`https://freesound.org/apiv2/search/text/?query=${countryOne}&token=${key}`);
       const sounds = await response.json();
-      const randomSound = sounds.results[Math.floor(Math.random() * sounds.count)];
+      const randomSound = sounds.results[Math.floor(Math.random() * sounds.results.length)];
       const soundId = randomSound.id;
       const soundResponse = await fetch(`https://freesound.org/apiv2/sounds/${soundId}?token=${key}`);
       const soundData = await soundResponse.json();
       const soundPreviewUrl = soundData.previews['preview-hq-mp3'];
-
       return {preview: soundPreviewUrl};
     } catch (error) {
       console.error(error);
@@ -45,10 +44,16 @@ async function getCountryFlags(countryOne, countryTwo){
   }
 }
 
+async function loadAudio() {
+  const soundObject = await getCountrySounds(countryOne);
+  const soundUrl = soundObject['preview'];
+  const audioPlayer = document.getElementById("audioPlayer");
+  audioPlayer.src = soundUrl
+}
+
 async function displayFlags(countryOne, countryTwo) {
   try {
     let flagObj = await getCountryFlags(countryOne,countryTwo);
-    console.log(flagObj);
     document.getElementById("flagOne").src = flagObj.flagOne;
     document.getElementById("flagTwo").src = flagObj.flagTwo;
   } catch (error) {
