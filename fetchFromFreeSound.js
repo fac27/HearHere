@@ -1,3 +1,5 @@
+import { key } from "./secret.js";
+
 let countryOne = ""
 let countryTwo = ""
 
@@ -14,3 +16,5 @@ async function getCountrySounds(countryOne) {
       console.error(error);
     }
   }
+
+console.log(key);
