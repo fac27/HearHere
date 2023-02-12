@@ -5,8 +5,6 @@ function generateRandomCountry() {
   return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
 }
 
-console.log(generateRandomCountry())
-
 async function getCountrySounds(countryOne) {
     try {
       const response = await fetch(`https://freesound.org/apiv2/search/text/?query=${countryOne}&token=${key}`);
@@ -15,6 +13,7 @@ async function getCountrySounds(countryOne) {
       const soundId = randomSound.id;
       const soundResponse = await fetch(`https://freesound.org/apiv2/sounds/${soundId}?token=${key}`);
       const soundData = await soundResponse.json();
+      console.log(soundData)
       const soundPreviewUrl = soundData.previews['preview-hq-mp3'];
       return {preview: soundPreviewUrl};
     } catch (error) {
@@ -48,7 +47,7 @@ async function getCountryFlags(countryOne, countryTwo){
   }
 }
 
-async function loadAudio() {
+async function loadAudio(countryOne) {
   const soundObject = await getCountrySounds(countryOne);
   const soundUrl = soundObject['preview'];
   const audioPlayer = document.getElementById("audioPlayer");
@@ -65,4 +64,36 @@ async function displayFlags(countryOne, countryTwo) {
   }
 }
 
-displayFlags("usa","russia");
+function capitaliseCountryName(country) {
+  const arr = country.split(" ");
+
+  console.log(arr)
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+  }
+  
+  return arr.join(" ");
+}
+
+function displayNewCountryNames(countryOne, countryTwo) {
+  document.getElementById("countryNameOne").innerHTML = capitaliseCountryName(countryOne)
+  document.getElementById("countryNameTwo").innerHTML = capitaliseCountryName(countryTwo)
+}
+
+function loadNewRound() {
+  let countryOne = generateRandomCountry();
+  let countryTwo = generateRandomCountry();
+
+  while(countryTwo === countryOne) {
+    countryTwo = generateRandomCountry()
+  }
+
+  console.log(countryOne);
+  console.log(countryTwo);
+  loadAudio(countryOne);
+  displayFlags(countryOne, countryTwo);
+  displayNewCountryNames(countryOne, countryTwo);
+}
+
+loadNewRound()
