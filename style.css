@@ -56,7 +56,7 @@ body{
 /* stack */
 
 .stack-sm > * + * {
-    margin-top: 1rem;
+    margin-top: 0.25rem;
   }
   .stack-md > * + * {
     margin-top: 3rem;
