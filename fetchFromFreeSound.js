@@ -1,14 +1,11 @@
 import { key } from "./secret.js";
 import { curatedCountries } from "./curatedCountries.js";
 
-console.log(curatedCountries);
-let countryOne = ""
-let countryTwo = ""
-
-function randomiseCountries() {
-  countryOne = curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
-  countryTwo = curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
+function generateRandomCountry() {
+  return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
 }
+
+console.log(generateRandomCountry())
 
 async function getCountrySounds(countryOne) {
     try {
