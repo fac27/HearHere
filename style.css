@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
+
+:root {
+    /*temp names while we work on color scheme*/
+    --color1: #9cf3f4;
+    --color2: #bc7bdf;
+    --btncolor: #7b7eec;
+    --color4: #04081a;
+    --color5: #e18de0;
+
+}
+
+body{
+    background: rgb(250,255,255);
+    background: linear-gradient(0deg, rgba(240,255,255,1) 0%, rgba(255,255,255,1) 100%);
+    font-family: 'Rubik', sans-serif;
+    height: 100vh;
+    margin: 0;
+}
 /* flex */
 
 .row {
@@ -8,6 +27,21 @@
     justify-content: space-between;
 }
 
+.space-around {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
 /* positioning */
 
 .centre {
@@ -15,9 +49,74 @@
     margin-right: auto;
     text-align: center;
 }
+    .center-sm{
+        width: 25vw;
+    }
 
 /* stack */
 
-.stack-l {
+.stack-sm > * + * {
+    margin-top: 1rem;
+  }
+  .stack-md > * + * {
+    margin-top: 3rem;
+  }
+  .stack-lg {
     margin-top: 5rem;
+  }
+
+
+/* BLOCKS */
+  
+.header {
+    height: 12vh;
+  }
+ 
+
+
+/* ELEMENTS */
+
+
+  .flag {
+    border: 2px solid black;
+    max-height: 3rem;
+   
+    border-radius: 4%;
+    -webkit-border-radius: 4%;
+    -moz-border-radius: 4%;
+    -ms-border-radius: 4%;
+    -o-border-radius: 4%;
+}
+
+
+  .btn--header {
+    height: 2.2rem;
+    width: 2.2rem;
+    background-color: transparent;
+    align-self: end;
+    border: 2px dotted var(--btncolor);
+    transition: 300ms;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+}
+    .btn--header:hover{
+        box-shadow: none;
+        background-color: var(--btncolor);
+}
+
+
+/* MEDIA QUERIES */
+
+@media (min-width:700px) {
+    .flag {
+        max-height: 4rem;
+        max-width: 4rem;
+    }
 }
