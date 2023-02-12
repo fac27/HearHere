@@ -9,31 +9,33 @@
     <script src="fetchFromFreeSound.js"></script>
   </head>
   <body>
-    <header class="row space-between">
-        <button type="button" name="instructions" id="instructionsButton">?</button>
-        <img src="Assets/Default Assets (to be deleted)/logo.png" width="50rem" alt="Hear Here logo">
-        <button type="button" name="stats" id="statsButton">?</button>
+    <header class="header row space-around">
+        <button class="btn--header" type="button" name="instructions" id="instructionsButton"><i class="fa-solid fa-info"></i></button>
+        <img src="Assets/Default Assets (to be deleted)/HearHere.png" alt="Hear Here logo">
+        
+        <button class="btn--header" type="button" name="stats" id="statsButton"><i class="fa-solid fa-chart-simple"></i></button>
     </header>
-    <main>
-        <figure class="stack-l centre">
-            <figcaption>Listen to the sound:</figcaption>
+    <main class="stack-lg">
+        <figure class="stack-md centre">
+            <figcaption>Listen to the sounds:</figcaption>
             <audio id="audioPlayer" controls src="Assets/Default Assets (to be deleted)/rain.mp3"></audio>
         </figure>
-        <div class="stack-l row space-between">
-            <figure>
-                <a><img id="flagOne" src="Assets/Default Assets (to be deleted)/af-flag.gif" width="80rem" alt="Flag of X"></a>
-                <figcaption>Afghanistan</figcaption>
+        <container class="stack-lg row space-around align-center">
+            <figure class="column">
+                <a><img class="flag center" id="flagOne" src="Assets/Default Assets (to be deleted)/af-flag.gif" alt="Flag of X"></a>
+                <figcaption class="">Afghanistan</figcaption>
             </figure>
-            <figure>
-                <a><img id="flagTwo" src="Assets/Default Assets (to be deleted)/al-flag.gif" width="80rem" alt="Flag of Y"></a>
-                <figcaption>Albania</figcaption>
+            <figure class="column">
+                <a><img class="flag center" id="flagTwo" src="Assets/Default Assets (to be deleted)/al-flag.gif" alt="Flag of Y"></a>
+                <figcaption class="">Albania</figcaption>
             </figure>
-        </div>
+        </container>
         <p class="centre"> Press flags to guess country!</p>
     </main>
     <script type="module" src="fetchFromFreeSound.js" async defer></script>
     <script type="module" src="secret.js" async defer></script>
     <script type="module" src="curatedCountries.js" async defer></script>
+    <script src="https://kit.fontawesome.com/de362ee74f.js" crossorigin="anonymous"></script>
   </body>
 
 
