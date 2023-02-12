@@ -34,7 +34,6 @@ export const curatedCountries = [
     "cuba",
     "czech republic",
     "cyprus",
-    "cruise ship",
     "denmark",
     "dominica",
     "dominican republic",

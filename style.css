@@ -79,8 +79,8 @@ body{
 
   .flag {
     border: 2px solid black;
-    max-height: 3rem;
-   
+    height: 2.5rem;
+    width: 4rem;
     border-radius: 4%;
     -webkit-border-radius: 4%;
     -moz-border-radius: 4%;

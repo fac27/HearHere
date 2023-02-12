@@ -66,8 +66,22 @@ async function loadAudio(countryOne) {
 async function displayFlags(countryOne, countryTwo) {
   try {
     let flagObj = await getCountryFlags(countryOne,countryTwo);
-    document.getElementById("flagOne").src = flagObj.flagOne;
-    document.getElementById("flagTwo").src = flagObj.flagTwo;
+    const flagsElements = document.getElementsByClassName("flag");
+    //copy to array so we can splice later
+    const flagsArr = Array.prototype.slice.call(flagsElements, 0);
+    //randomise flag one
+    let flagOnePos = Math.floor(Math.random() * 2);
+    //set it to that pos
+    flagsArr[flagOnePos].src = flagObj.flagOne;
+    flagsArr[flagOnePos].classList.add("correct");
+    flagsArr[flagOnePos].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryOne);
+
+    //remove from array
+    flagsArr.splice(flagOnePos, 1);
+    //set flag two to remaining pos
+    flagsArr[0].src = flagObj.flagTwo;
+    flagsArr[0].classList.add("incorrect");
+    flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
   } catch (error) {
     console.error(error);
   }
@@ -85,8 +99,8 @@ function capitaliseCountryName(country) {
 }
 
 function displayNewCountryNames(countryOne, countryTwo) {
-  document.getElementById("countryNameOne").innerHTML = capitaliseCountryName(countryOne)
-  document.getElementById("countryNameTwo").innerHTML = capitaliseCountryName(countryTwo)
+  //document.getElementById("countryNameOne").innerHTML = capitaliseCountryName(countryOne)
+  //document.getElementById("countryNameTwo").innerHTML = capitaliseCountryName(countryTwo)
 }
 
 function loadNewRound() {
