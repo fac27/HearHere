@@ -21,8 +21,10 @@ git clone https://github.com/fac27/HearHere
 
 Launch in VSCode and use the [liveserver extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to launch the site.
 
-We use an API key stored on a file called secret.js, contact us for this file OR apply to freesound for [your own API key](https://freesound.org/apiv2/apply/) and create a file called secret.js in your directory. The file should look like this.
+We use an API key stored on a file called secret.js, contact us for this file OR apply to freesound for [your own API key](https://freesound.org/apiv2/apply/) and create a file called secret.js (it MUST be called secret.js) in your directory. The file should look like this.
 ```
 export const key = "YOUR_API_KEY";
 ```
 Be sure to replace "YOUR_API_KEY" with your own key in quotes.
+
+DO NOT push secret.js to the public repository, the .gitignore file should do this for you.
