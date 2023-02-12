@@ -7,15 +7,18 @@ function generateRandomCountry() {
 
 async function getCountrySounds(countryOne) {
     try {
+      const soundsObj = []
       const response = await fetch(`https://freesound.org/apiv2/search/text/?query=${countryOne}&token=${key}`);
       const sounds = await response.json();
-      const randomSound = sounds.results[Math.floor(Math.random() * sounds.results.length)];
-      const soundId = randomSound.id;
-      const soundResponse = await fetch(`https://freesound.org/apiv2/sounds/${soundId}?token=${key}`);
-      const soundData = await soundResponse.json();
-      console.log(soundData)
-      const soundPreviewUrl = soundData.previews['preview-hq-mp3'];
-      return {preview: soundPreviewUrl};
+      for (let i = 0; i < 5; i++){
+        const randomSound = sounds.results[Math.floor(Math.random() * sounds.results.length)];
+        const soundId = randomSound.id;
+        const soundResponse = await fetch(`https://freesound.org/apiv2/sounds/${soundId}?token=${key}`);
+        const soundData = await soundResponse.json();
+        const soundPreviewUrl = soundData.previews['preview-hq-mp3'];
+        soundsObj[`preview${i}`] = soundPreviewUrl;
+      }
+      return soundsObj;
     } catch (error) {
       console.error(error);
     }
@@ -49,9 +52,15 @@ async function getCountryFlags(countryOne, countryTwo){
 
 async function loadAudio(countryOne) {
   const soundObject = await getCountrySounds(countryOne);
-  const soundUrl = soundObject['preview'];
-  const audioPlayer = document.getElementById("audioPlayer");
-  audioPlayer.src = soundUrl
+  const parentElement = document.getElementById("figureAudio");
+  for (let i = 0; i < 5; i++){
+    const soundUrl = soundObject[`preview${i}`];
+    const audioPlayer = document.createElement("AUDIO");
+    audioPlayer.id = `audioplayer${i}`
+    audioPlayer.src = soundUrl;
+    audioPlayer.setAttribute("controls", "true");
+    parentElement.appendChild(audioPlayer);
+  }
 }
 
 async function displayFlags(countryOne, countryTwo) {
@@ -67,7 +76,6 @@ async function displayFlags(countryOne, countryTwo) {
 function capitaliseCountryName(country) {
   const arr = country.split(" ");
 
-  console.log(arr)
 
   for (let i = 0; i < arr.length; i++) {
     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
@@ -89,8 +97,7 @@ function loadNewRound() {
     countryTwo = generateRandomCountry()
   }
 
-  console.log(countryOne);
-  console.log(countryTwo);
+
   loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
   displayNewCountryNames(countryOne, countryTwo);
