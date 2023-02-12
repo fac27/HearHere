@@ -1,7 +1,7 @@
 import { key } from "./secret.js";
+import { curatedCountries } from "./curatedCountries.js";
 
-const curatedCountries = ["Afghanistan", "Indonesia", "Mexico", "Germany", "Cameroon"]
-
+console.log(curatedCountries);
 let countryOne = ""
 let countryTwo = ""
 
