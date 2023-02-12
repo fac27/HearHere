@@ -64,19 +64,36 @@ async function displayFlags(countryOne, countryTwo) {
   }
 }
 
+function capitaliseCountryName(country) {
+  const arr = country.split(" ");
+
+  console.log(arr)
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+  }
+  
+  return arr.join(" ");
+}
+
+function displayNewCountryNames(countryOne, countryTwo) {
+  document.getElementById("countryNameOne").innerHTML = capitaliseCountryName(countryOne)
+  document.getElementById("countryNameTwo").innerHTML = capitaliseCountryName(countryTwo)
+}
+
 function loadNewRound() {
-  let countryOne = generateRandomCountry()
-  let countryTwo = generateRandomCountry()
+  let countryOne = generateRandomCountry();
+  let countryTwo = generateRandomCountry();
 
   while(countryTwo === countryOne) {
     countryTwo = generateRandomCountry()
   }
 
-  console.log(countryOne)
-  console.log(countryTwo)
-  loadAudio(countryOne)
-  displayFlags(countryOne, countryTwo)
-
+  console.log(countryOne);
+  console.log(countryTwo);
+  loadAudio(countryOne);
+  displayFlags(countryOne, countryTwo);
+  displayNewCountryNames(countryOne, countryTwo);
 }
 
 loadNewRound()
