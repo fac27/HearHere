@@ -17,6 +17,7 @@ body{
     height: 100vh;
     margin: 0;
 }
+
 /* flex */
 
 .row {
@@ -53,6 +54,24 @@ body{
         width: 25vw;
     }
 
+    .centre-absolute {
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto;
+    }
+    .centre-vertical {
+        top: 40%;
+    }
+
+.absolute {
+    position: absolute;
+}
+
+.on-top {
+    z-index: 1;
+}
+
 /* stack */
 
 .stack-sm > * + * {
@@ -71,8 +90,12 @@ body{
 .header {
     height: 12vh;
   }
- 
 
+/* DISPLAY */
+
+.hidden {
+    display: none;
+}
 
 /* ELEMENTS */
 
@@ -87,6 +110,14 @@ body{
     -ms-border-radius: 4%;
     -o-border-radius: 4%;
 }
+
+    .pop-up-window {
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 4%;
+        width: 12rem;
+        padding: 0.8rem;
+    }
 
 
   .btn--header {

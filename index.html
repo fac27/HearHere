@@ -31,6 +31,17 @@
                 <figcaption id="countryNameTwo">Albania</figcaption>
             </figure>
         </container>
+
+        <div class="hidden pop-up-window absolute on-top centre-absolute centre-vertical" id="correctAnswerPopup">
+            <p>Well done! You chose the correct country.</p>
+            <button class="new-round" type="button">New round</button>
+        </div>
+
+        <div class="hidden pop-up-window absolute on-top centre-absolute centre-vertical" id="incorrectAnswerPopup">
+            <p>You chose the wrong country :(</p>
+            <button class="new-round" type="button">New round</button>
+        </div>
+        
         <p class="centre"> Press flags to guess country!</p>
     </main>
     <script type="module" src="fetchFromFreeSound.js" async defer></script>

@@ -82,6 +82,20 @@ async function displayFlags(countryOne, countryTwo) {
     flagsArr[0].src = flagObj.flagTwo;
     flagsArr[0].classList.add("incorrect");
     flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
+
+    //add event listeners
+    
+    console.log(flagsElements)
+    for (let i = 0; i < flagsElements.length; i++) {
+      flagsElements[i].addEventListener('click', function() {
+        if (this.classList.contains('correct')) {
+          submitAnswer("correct")
+        } else if (this.classList.contains('incorrect')) {
+          submitAnswer("incorrect")
+        }
+      });
+    }
+
   } catch (error) {
     console.error(error);
   }
@@ -115,6 +129,15 @@ function loadNewRound() {
   loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
   displayNewCountryNames(countryOne, countryTwo);
+}
+
+function submitAnswer(answer) {
+  if(answer === "correct") {
+    document.getElementById("correctAnswerPopup").style.display = "block";
+  }
+  else if (answer === "incorrect") {
+    document.getElementById("incorrectAnswerPopup").style.display = "block";
+  }
 }
 
 loadNewRound()
