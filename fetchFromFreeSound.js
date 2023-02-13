@@ -85,7 +85,6 @@ async function displayFlags(countryOne, countryTwo) {
 
     //add event listeners
     
-    console.log(flagsElements)
     for (let i = 0; i < flagsElements.length; i++) {
       flagsElements[i].addEventListener('click', function() {
         if (this.classList.contains('correct')) {
@@ -118,13 +117,19 @@ function displayNewCountryNames(countryOne, countryTwo) {
 }
 
 function loadNewRound() {
+  const previousAudio = document.querySelectorAll("audio");  
+  for (let i = 0; i < previousAudio.length; i++) {
+    previousAudio[i].remove()
+  }
+
+  document.getElementById("correctAnswerPopup").style.display = "none";
+  document.getElementById("incorrectAnswerPopup").style.display = "none";
   let countryOne = generateRandomCountry();
   let countryTwo = generateRandomCountry();
 
   while(countryTwo === countryOne) {
-    countryTwo = generateRandomCountry()
+    countryTwo = generateRandomCountry();
   }
-
 
   loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
@@ -137,6 +142,11 @@ function submitAnswer(answer) {
   }
   else if (answer === "incorrect") {
     document.getElementById("incorrectAnswerPopup").style.display = "block";
+  }
+  
+  const newRoundButtons = document.getElementsByClassName("new-round");
+  for (let i = 0; i < newRoundButtons.length; i++) {
+    newRoundButtons[i].addEventListener('click', loadNewRound)
   }
 }
 
