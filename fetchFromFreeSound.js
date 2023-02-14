@@ -1,6 +1,8 @@
 import { key } from "./secret.js";
 import { curatedCountries } from "./curatedCountries.js";
 
+localStorage.clear()
+
 function generateRandomCountry() {
   return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
 }
@@ -73,30 +75,41 @@ async function displayFlags(countryOne, countryTwo) {
     let flagOnePos = Math.floor(Math.random() * 2);
     //set it to that pos
     flagsArr[flagOnePos].src = flagObj.flagOne;
-    flagsArr[flagOnePos].classList.add("correct");
+    flagsArr[flagOnePos].classList.remove("correct", "incorrect")
+    flagsArr[flagOnePos].classList.add("correct")
+    //flagsArr[flagOnePos].className = "flag correct";
     flagsArr[flagOnePos].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryOne);
 
     //remove from array
     flagsArr.splice(flagOnePos, 1);
     //set flag two to remaining pos
     flagsArr[0].src = flagObj.flagTwo;
-    flagsArr[0].classList.add("incorrect");
+    flagsArr[0].classList.remove("correct", "incorrect")
+    flagsArr[0].classList.add("incorrect")
+    //flagsArr[0].className = "flag incorrect";
     flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
 
-    //add event listeners
-    
+    //remove existing event listeners
     for (let i = 0; i < flagsElements.length; i++) {
-      flagsElements[i].addEventListener('click', function() {
-        if (this.classList.contains('correct')) {
-          submitAnswer("correct")
-        } else if (this.classList.contains('incorrect')) {
-          submitAnswer("incorrect")
-        }
-      });
+      flagsElements[i].removeEventListener('click', checkAnswer);
+    }
+
+    //add new event listeners
+    for (let i = 0; i < flagsElements.length; i++) {
+      flagsElements[i].addEventListener('click', checkAnswer);
     }
 
   } catch (error) {
     console.error(error);
+  }
+}
+
+
+function checkAnswer() {
+  if (this.classList.contains("correct")) {
+    submitAnswer("correct")
+  } else if (this.classList.contains("incorrect")) {
+    submitAnswer("incorrect") 
   }
 }
 
@@ -137,13 +150,27 @@ function loadNewRound() {
 }
 
 function submitAnswer(answer) {
+  if(Number(localStorage["Games played"]) > 0) {
+    let gamesPlayed = localStorage.getItem("Games played")
+    gamesPlayed = Number(gamesPlayed)+ 1
+    localStorage.setItem("Games played", gamesPlayed)
+    localStorage.setItem(gamesPlayed, answer)
+  }
+  else {
+    localStorage.setItem("Games played", 1)
+    localStorage.setItem(1, answer)
+  }
+
+  console.log(localStorage)
+
   if(answer === "correct") {
     document.getElementById("correctAnswerPopup").style.display = "block";
   }
+
   else if (answer === "incorrect") {
     document.getElementById("incorrectAnswerPopup").style.display = "block";
   }
-  
+
   const newRoundButtons = document.getElementsByClassName("new-round");
   for (let i = 0; i < newRoundButtons.length; i++) {
     newRoundButtons[i].addEventListener('click', loadNewRound)
