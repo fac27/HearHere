@@ -3,6 +3,30 @@ import { curatedCountries } from "./curatedCountries.js";
 
 localStorage.clear()
 
+loadNewRound()
+
+function loadNewRound() {
+  const previousAudio = document.querySelectorAll("audio");  
+  for (let i = 0; i < previousAudio.length; i++) {
+    previousAudio[i].remove()
+  }
+
+  document.getElementById("correctAnswerPopup").style.display = "none";
+  document.getElementById("incorrectAnswerPopup").style.display = "none";
+  let countryOne = generateRandomCountry();
+  let countryTwo = generateRandomCountry();
+
+  while(countryTwo === countryOne) {
+    countryTwo = generateRandomCountry();
+  }
+
+  loadAudio(countryOne);
+  displayFlags(countryOne, countryTwo);
+  displayNewCountryNames(countryOne, countryTwo);
+}
+
+
+
 function generateRandomCountry() {
   return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
 }
@@ -129,25 +153,7 @@ function displayNewCountryNames(countryOne, countryTwo) {
   //document.getElementById("countryNameTwo").innerHTML = capitaliseCountryName(countryTwo)
 }
 
-function loadNewRound() {
-  const previousAudio = document.querySelectorAll("audio");  
-  for (let i = 0; i < previousAudio.length; i++) {
-    previousAudio[i].remove()
-  }
 
-  document.getElementById("correctAnswerPopup").style.display = "none";
-  document.getElementById("incorrectAnswerPopup").style.display = "none";
-  let countryOne = generateRandomCountry();
-  let countryTwo = generateRandomCountry();
-
-  while(countryTwo === countryOne) {
-    countryTwo = generateRandomCountry();
-  }
-
-  loadAudio(countryOne);
-  displayFlags(countryOne, countryTwo);
-  displayNewCountryNames(countryOne, countryTwo);
-}
 
 function submitAnswer(answer) {
   if(Number(localStorage["Games played"]) > 0) {
@@ -177,4 +183,3 @@ function submitAnswer(answer) {
   }
 }
 
-loadNewRound()
