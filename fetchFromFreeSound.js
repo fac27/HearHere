@@ -3,6 +3,12 @@ import { curatedCountries } from "./curatedCountries.js";
 
 localStorage.clear()
 
+
+//    ****    || MAIN FUNCTION ||   ****
+
+//  Load new round calls our update DOM functions, which subsequently call
+//  our fetch functions.
+
 loadNewRound()
 
 function loadNewRound() {
@@ -22,14 +28,77 @@ function loadNewRound() {
 
   loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
-  displayNewCountryNames(countryOne, countryTwo);
 }
 
 
 
-function generateRandomCountry() {
-  return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
+
+
+//  ****  || UPDATE DOM FUNCTIONS || ****
+
+//  These call our fetch functions and update the DOM with the data
+
+async function loadAudio(countryOne) {
+  const soundObject = await getCountrySounds(countryOne);
+  const parentElement = document.getElementById("figureAudio");
+  for (let i = 0; i < 5; i++){
+    const soundUrl = soundObject[`preview${i}`];
+    const audioPlayer = document.createElement("AUDIO");
+    audioPlayer.id = `audioplayer${i}`
+    audioPlayer.src = soundUrl;
+    audioPlayer.setAttribute("controls", "true");
+    audioPlayer.style.display = "none";
+    parentElement.appendChild(audioPlayer);
+  }
+  document.getElementById("audioplayer0").style.display = "block"
 }
+
+async function displayFlags(countryOne, countryTwo) {
+  try {
+    let flagObj = await getCountryFlags(countryOne,countryTwo);
+    const flagsElements = document.getElementsByClassName("flag");
+    //copy to array so we can splice later
+    const flagsArr = Array.prototype.slice.call(flagsElements, 0);
+    //randomise flag one
+    let flagOnePos = Math.floor(Math.random() * 2);
+    //set it to that pos
+    flagsArr[flagOnePos].src = flagObj.flagOne;
+    flagsArr[flagOnePos].classList.remove("correct", "incorrect")
+    flagsArr[flagOnePos].classList.add("correct")
+    //flagsArr[flagOnePos].className = "flag correct";
+    flagsArr[flagOnePos].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryOne);
+
+    //remove from array
+    flagsArr.splice(flagOnePos, 1);
+    //set flag two to remaining pos
+    flagsArr[0].src = flagObj.flagTwo;
+    flagsArr[0].classList.remove("correct", "incorrect")
+    flagsArr[0].classList.add("incorrect")
+    //flagsArr[0].className = "flag incorrect";
+    flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
+
+    //remove existing event listeners
+    for (let i = 0; i < flagsElements.length; i++) {
+      flagsElements[i].removeEventListener('click', checkAnswer);
+    }
+
+    //add new event listeners
+    for (let i = 0; i < flagsElements.length; i++) {
+      flagsElements[i].addEventListener('click', checkAnswer);
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+
+
+
+//    ****   || FETCH FUNCTIONS ||    ****
+
+//  These grab the data from the APIS
 
 async function getCountrySounds(countryOne) {
     try {
@@ -76,82 +145,31 @@ async function getCountryFlags(countryOne, countryTwo){
   }
 }
 
-async function loadAudio(countryOne) {
-  const soundObject = await getCountrySounds(countryOne);
-  const parentElement = document.getElementById("figureAudio");
-  for (let i = 0; i < 5; i++){
-    const soundUrl = soundObject[`preview${i}`];
-    const audioPlayer = document.createElement("AUDIO");
-    audioPlayer.id = `audioplayer${i}`
-    audioPlayer.src = soundUrl;
-    audioPlayer.setAttribute("controls", "true");
-    parentElement.appendChild(audioPlayer);
-  }
-}
-
-async function displayFlags(countryOne, countryTwo) {
-  try {
-    let flagObj = await getCountryFlags(countryOne,countryTwo);
-    const flagsElements = document.getElementsByClassName("flag");
-    //copy to array so we can splice later
-    const flagsArr = Array.prototype.slice.call(flagsElements, 0);
-    //randomise flag one
-    let flagOnePos = Math.floor(Math.random() * 2);
-    //set it to that pos
-    flagsArr[flagOnePos].src = flagObj.flagOne;
-    flagsArr[flagOnePos].classList.remove("correct", "incorrect")
-    flagsArr[flagOnePos].classList.add("correct")
-    //flagsArr[flagOnePos].className = "flag correct";
-    flagsArr[flagOnePos].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryOne);
-
-    //remove from array
-    flagsArr.splice(flagOnePos, 1);
-    //set flag two to remaining pos
-    flagsArr[0].src = flagObj.flagTwo;
-    flagsArr[0].classList.remove("correct", "incorrect")
-    flagsArr[0].classList.add("incorrect")
-    //flagsArr[0].className = "flag incorrect";
-    flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
-
-    //remove existing event listeners
-    for (let i = 0; i < flagsElements.length; i++) {
-      flagsElements[i].removeEventListener('click', checkAnswer);
-    }
-
-    //add new event listeners
-    for (let i = 0; i < flagsElements.length; i++) {
-      flagsElements[i].addEventListener('click', checkAnswer);
-    }
-
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 
-function checkAnswer() {
-  if (this.classList.contains("correct")) {
-    submitAnswer("correct")
-  } else if (this.classList.contains("incorrect")) {
-    submitAnswer("incorrect") 
-  }
-}
-
-function capitaliseCountryName(country) {
-  const arr = country.split(" ");
 
 
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-  }
+//    ****  || FUNCTIONS THAT HANDLE USER ANSWERS ||    ****
+
+let passCount = 0
+document.getElementById("btnPass").addEventListener('click', (e)=>{
+  passCount += 1
+  const audioPlayersArr = document.querySelectorAll("audio");
+  const starsHTMLColl = document.getElementById('stars').children;
+  let stars = Array.prototype.slice.call(starsHTMLColl, 0);
   
-  return arr.join(" ");
-}
-
-function displayNewCountryNames(countryOne, countryTwo) {
-  //document.getElementById("countryNameOne").innerHTML = capitaliseCountryName(countryOne)
-  //document.getElementById("countryNameTwo").innerHTML = capitaliseCountryName(countryTwo)
-}
+  if (passCount < 5){
+    document.getElementById(`audioplayer${passCount}`).style.display = 'block';
+    console.log(stars);
+    
+    stars.at(passCount * -1).classList.remove("fa-solid");
+    stars.at(passCount * -1).classList.add('fa-regular');
+  } if (passCount === 5){
+    document.getElementById('noAudio').classList.toggle('hidden');
+  } if (passCount > 5){
+    console.log(passCount);
+  }
+})
 
 
 
@@ -181,5 +199,43 @@ function submitAnswer(answer) {
   for (let i = 0; i < newRoundButtons.length; i++) {
     newRoundButtons[i].addEventListener('click', loadNewRound)
   }
+  //reset passCount and NoMoreAudio window
+  passCount = 0
+  document.getElementById('noAudio').classList.toggle('hidden');
 }
+
+function checkAnswer() {
+  if (this.classList.contains("correct")) {
+    submitAnswer("correct")
+  } else if (this.classList.contains("incorrect")) {
+    submitAnswer("incorrect") 
+  }
+}
+
+
+
+
+
+
+//    ****    || HELPER FUNCTIONS ||    ****
+
+
+
+function generateRandomCountry() {
+  return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
+}
+
+function capitaliseCountryName(country) {
+  const arr = country.split(" ");
+
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+  }
+  
+  return arr.join(" ");
+}
+
+
+
 

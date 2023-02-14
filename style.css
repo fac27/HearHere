@@ -11,8 +11,7 @@
 }
 
 body{
-    background: rgb(250,255,255);
-    background: linear-gradient(0deg, rgba(240,255,255,1) 0%, rgba(255,255,255,1) 100%);
+    background: rgb(255,255,255);
     font-family: 'Rubik', sans-serif;
     height: 100vh;
     margin: 0;
@@ -24,12 +23,18 @@ body{
     display: flex;
 }
 
+
+
 .space-between {
     justify-content: space-between;
 }
 
 .space-around {
     justify-content: space-around;
+}
+
+.justify-center {
+    justify-content: center;
 }
 
 .align-center {
@@ -50,7 +55,7 @@ body{
     margin-right: auto;
     text-align: center;
 }
-    .center-sm{
+    .centre-sm{
         width: 25vw;
     }
 
@@ -72,13 +77,17 @@ body{
     z-index: 1;
 }
 
+.full-width {
+    width: 100%;
+}
+
 /* stack */
 
 .stack-sm > * + * {
     margin-top: 0.25rem;
   }
   .stack-md > * + * {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
   .stack-lg {
     margin-top: 5rem;
@@ -99,6 +108,9 @@ body{
 
 /* ELEMENTS */
 
+.stars > i {
+    color: gold;
+}
 
   .flag {
     border: 2px solid black;
