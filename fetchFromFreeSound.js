@@ -1,6 +1,8 @@
 import { key } from "./secret.js";
 import { curatedCountries } from "./curatedCountries.js";
 
+localStorage.clear()
+
 function generateRandomCountry() {
   return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
 }
@@ -73,10 +75,8 @@ async function displayFlags(countryOne, countryTwo) {
     let flagOnePos = Math.floor(Math.random() * 2);
     //set it to that pos
     flagsArr[flagOnePos].src = flagObj.flagOne;
-    //Before using className, I tried just removing the previous correct and incorrect classes from classList e.g.
     flagsArr[flagOnePos].classList.remove("correct", "incorrect")
     flagsArr[flagOnePos].classList.add("correct")
-
     //flagsArr[flagOnePos].className = "flag correct";
     flagsArr[flagOnePos].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryOne);
 
@@ -84,7 +84,6 @@ async function displayFlags(countryOne, countryTwo) {
     flagsArr.splice(flagOnePos, 1);
     //set flag two to remaining pos
     flagsArr[0].src = flagObj.flagTwo;
-    //Before using className, I tried just removing the previous correct and incorrect classes from classList e.g.
     flagsArr[0].classList.remove("correct", "incorrect")
     flagsArr[0].classList.add("incorrect")
     //flagsArr[0].className = "flag incorrect";
@@ -144,8 +143,18 @@ function loadNewRound() {
 }
 
 function submitAnswer(answer) {
+  if(Number(localStorage["Games played"]) > 0) {
+    let gamesPlayed = localStorage.getItem("Games played")
+    gamesPlayed = Number(gamesPlayed)+ 1
+    localStorage.setItem("Games played", gamesPlayed)
+    localStorage.setItem(gamesPlayed, answer)
+  }
+  else {
+    localStorage.setItem("Games played", 1)
+    localStorage.setItem(1, answer)
+  }
 
-  
+  console.log(localStorage)
 
   if(answer === "correct") {
     document.getElementById("correctAnswerPopup").style.display = "block";
