@@ -89,20 +89,27 @@ async function displayFlags(countryOne, countryTwo) {
     //flagsArr[0].className = "flag incorrect";
     flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
 
-    //add event listeners
-    
+    //remove existing event listeners
     for (let i = 0; i < flagsElements.length; i++) {
-      flagsElements[i].addEventListener('click', function() {
-        if (this.classList.contains("correct")) {
-          submitAnswer("correct")
-        } else if (this.classList.contains("incorrect")) {
-          submitAnswer("incorrect") 
-        }
-      });
+      flagsElements[i].removeEventListener('click', checkAnswer);
+    }
+
+    //add new event listeners
+    for (let i = 0; i < flagsElements.length; i++) {
+      flagsElements[i].addEventListener('click', checkAnswer);
     }
 
   } catch (error) {
     console.error(error);
+  }
+}
+
+
+function checkAnswer() {
+  if (this.classList.contains("correct")) {
+    submitAnswer("correct")
+  } else if (this.classList.contains("incorrect")) {
+    submitAnswer("incorrect") 
   }
 }
 
