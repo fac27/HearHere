@@ -74,10 +74,10 @@ async function displayFlags(countryOne, countryTwo) {
     //set it to that pos
     flagsArr[flagOnePos].src = flagObj.flagOne;
     //Before using className, I tried just removing the previous correct and incorrect classes from classList e.g.
-    //flagsArr[flagOnePos].classList.remove("correct", "incorrect")
-    //flagsArr[flagOnePos].classList.add("correct")
+    flagsArr[flagOnePos].classList.remove("correct", "incorrect")
+    flagsArr[flagOnePos].classList.add("correct")
 
-    flagsArr[flagOnePos].className = "flag correct";
+    //flagsArr[flagOnePos].className = "flag correct";
     flagsArr[flagOnePos].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryOne);
 
     //remove from array
@@ -85,19 +85,18 @@ async function displayFlags(countryOne, countryTwo) {
     //set flag two to remaining pos
     flagsArr[0].src = flagObj.flagTwo;
     //Before using className, I tried just removing the previous correct and incorrect classes from classList e.g.
-    //flagsArr[0].classList.remove("correct", "incorrect")
-    //flagsArr[0].classList.add("incorrect")
-    flagsArr[0].className = "flag incorrect";
+    flagsArr[0].classList.remove("correct", "incorrect")
+    flagsArr[0].classList.add("incorrect")
+    //flagsArr[0].className = "flag incorrect";
     flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
 
     //add event listeners
     
-    //Alternatively there may be something wrong with this function!
     for (let i = 0; i < flagsElements.length; i++) {
       flagsElements[i].addEventListener('click', function() {
-        if (this.className === "flag correct") {
+        if (this.classList.contains("correct")) {
           submitAnswer("correct")
-        } else if (this.className === "flag incorrect") {
+        } else if (this.classList.contains("incorrect")) {
           submitAnswer("incorrect") 
         }
       });
@@ -145,14 +144,8 @@ function loadNewRound() {
 }
 
 function submitAnswer(answer) {
-  if (localStorage.gamesPlayed) {
-    localStorage.gamesPlayed ++;
-  } else {
-    localStorage.gamesPlayed = 1;
-  }
 
-  const gameNumber = localStorage.gamesPlayed;
-  console.log(localStorage.gamesPlayed)
+  
 
   if(answer === "correct") {
     document.getElementById("correctAnswerPopup").style.display = "block";
