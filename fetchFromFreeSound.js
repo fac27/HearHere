@@ -92,10 +92,6 @@ async function displayFlags(countryOne, countryTwo) {
   }
 }
 
-
-
-
-
 //    ****   || FETCH FUNCTIONS ||    ****
 
 //  These grab the data from the APIS
@@ -145,10 +141,6 @@ async function getCountryFlags(countryOne, countryTwo){
   }
 }
 
-
-
-
-
 //    ****  || FUNCTIONS THAT HANDLE USER ANSWERS ||    ****
 
 let passCount = 0
@@ -159,9 +151,7 @@ document.getElementById("btnPass").addEventListener('click', (e)=>{
   let stars = Array.prototype.slice.call(starsHTMLColl, 0);
   
   if (passCount < 5){
-    document.getElementById(`audioplayer${passCount}`).style.display = 'block';
-    console.log(stars);
-    
+    document.getElementById(`audioplayer${passCount}`).style.display = 'block';    
     stars.at(passCount * -1).classList.remove("fa-solid");
     stars.at(passCount * -1).classList.add('fa-regular');
   } if (passCount === 5){
@@ -171,21 +161,56 @@ document.getElementById("btnPass").addEventListener('click', (e)=>{
   }
 })
 
+function storeData (answer) {
+
+  let gamesPlayedKey = "Games Played";
+  let gamesPlayedValue = localStorage.getItem("Games Played");
+  let fiveStarGamesKey = "Five Star Games";
+  let fiveStarGamesValue = localStorage.getItem("Five Star Games");
+  let fourStarGamesKey = "Four Star Games"; 
+  let fourStarGamesValue = localStorage.getItem("Four Star Games");
+  let threeStarGamesKey = "Three Star Games"; 
+  let threeStarGamesValue = localStorage.getItem("Three Star Games");
+  let twoStarGamesKey = "Two Star Games";
+  let twoStarGamesValue = localStorage.getItem("Two Star Games");
+  let oneStarGamesKey = "One Star Games";
+  let oneStarGamesValue = localStorage.getItem("One Star Games");
+  let zeroStarGamesKey = "Zero Star Games"; 
+  let zeroStarGamesValue = localStorage.getItem("Zero Star Games");
+
+  // function to add to numbers of scores for each star type
+  function addToScores(key, value) {
+    value = Number(value) + 1;
+    localStorage.setItem(key, value);
+  }
+
+  addToScores(gamesPlayedKey, gamesPlayedValue);
+
+  if(answer === "correct" && passCount === 0) {
+    addToScores(fiveStarGamesKey, fiveStarGamesValue);
+  }
+  else if (answer === "correct" && passCount === 1) {
+    addToScores(fourStarGamesKey, fourStarGamesValue);
+  }
+  else if (answer === "correct" && passCount === 2) {
+    addToScores(threeStarGamesKey, threeStarGamesValue);
+  }
+  else if (answer === "correct" && passCount === 3) {
+    addToScores(twoStarGamesKey, twoStarGamesValue);
+  }
+  else if (answer === "correct" && passCount > 3) {
+    addToScores(oneStarGamesKey, oneStarGamesValue);
+  }
+  else {
+    addToScores(zeroStarGamesKey, zeroStarGamesValue);
+  }
+  console.table(localStorage);
+}
 
 
 function submitAnswer(answer) {
-  if(Number(localStorage["Games played"]) > 0) {
-    let gamesPlayed = localStorage.getItem("Games played")
-    gamesPlayed = Number(gamesPlayed)+ 1
-    localStorage.setItem("Games played", gamesPlayed)
-    localStorage.setItem(gamesPlayed, answer)
-  }
-  else {
-    localStorage.setItem("Games played", 1)
-    localStorage.setItem(1, answer)
-  }
 
-  console.log(localStorage)
+  storeData(answer, passCount)
 
   if(answer === "correct") {
     document.getElementById("correctAnswerPopup").style.display = "block";
@@ -207,19 +232,12 @@ function submitAnswer(answer) {
 function checkAnswer() {
   if (this.classList.contains("correct")) {
     submitAnswer("correct")
-  } else if (this.classList.contains("incorrect")) {
+  } else {
     submitAnswer("incorrect") 
   }
 }
 
-
-
-
-
-
 //    ****    || HELPER FUNCTIONS ||    ****
-
-
 
 function generateRandomCountry() {
   return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
