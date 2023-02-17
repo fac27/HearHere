@@ -10,23 +10,58 @@
   </head>
   <body>
     <header class="header row space-around">
-        <button class="btn--header" type="button" name="instructions" id="instructionsButton"><i class="fa-solid fa-info"></i></button>
+        <button class="btn btn--header" type="button" name="instructions" id="instructionsButton"><i name="instructions" class="fa-solid fa-info"></i></button>
         <img class="logo" src="Assets/Default Assets (to be deleted)/HearHere.jpeg" alt="Hear Here logo">
         
-        <button class="btn--header" type="button" name="stats" id="statsButton"><i class="fa-solid fa-chart-simple"></i></button>
+        <button class="btn btn--header" type="button" name="stats" id="statsButton"><i name="stats" class="fa-solid fa-chart-simple"></i></button>
     </header>
-    <main>
-        <figure class="push-down-md stack-sm">
+    <main class="stack-lg">
+    <div class="hidden modal--container" id="instructions">
+    <div class="modal--content">
+        <button class="btn btn--header" name="instructions">X</button>
+        <h1 class="info">How to play</h1>
+        <p class="info">Welcome to HearHere, the game that lets you travel the world through your ears! Can you guess which country a mysterious sound recording comes from? Let's find out!</p>
+        <ol>
+            <li>You're presented with two flags and a mysterious field recording.</li>
+            <li>Make a guess right away for a chance to win 5 points. Or sacrifice a point to listen to another recording.</li>
+            <li>You can listen to up to 5 recordings before making a guess.</li>
+
+        </ol>
+    </div>
+    </div>
+    <div class="hidden modal--container" id="stats">
+        <div class="modal--content">
+            <button class="btn btn--header" name="stats">X</button>
+            <h1 class="info">Stats</h1>
+            <p class="info">Here's how you're faring on your auditory journey of the world.</p>
+            <ul>
+                <li class="gameStats">Games played:</li>
+                <li class="gameStats" id="5stars">5 <i class="fa-solid fa-star"></i></li>
+                <div class="bar--container"><div class="bar"></div></div>
+                <li class="gameStats" id="4stars">4 <i class="fa-solid fa-star"></i></li>
+                <div class="bar--container"><div class="bar"></div></div>
+                <li class="gameStats" id="3stars">3 <i class="fa-solid fa-star"></i></li>
+                <div class="bar--container"><div class="bar"></div></div>
+                <li class="gameStats" id="2stars">2 <i class="fa-solid fa-star"></i></li>
+                <div class="bar--container"><div class="bar"></div></div>
+                <li class="gameStats" id="1stars">1 <i class="fa-solid fa-star"></i></li>
+                <div class="bar--container"><div class="bar"></div></div>
+                <li class="gameStats" id="0stars">Fails: </li>
+                <div class="bar--container"><div class="bar"></div></div>
+            </ul>
+        </div>
+    </div>
+        <figure id="figureAudio" class="push-down-md stack-sm">
             <figcaption class="centre">Listen to the sounds:</figcaption>
-            <div id="figureAudio" class="audio-container centre row flex-down align-center stack-sm push-down-sm"></div>
+            <div id="audioContainer" class="audio-container centre row flex-down align-center stack-sm push-down-sm"></div>
             <p id="noAudio" class="hide centre no-top-margin">No more audio. Make a guess!</p>
         </figure>
-            <div class="centre stack-md">
+            <div class="centre stack-md no-top-margin">
                 <button id="btnPass" class="centre centre-sm button">Pass</button>
                 <div id="stars"class="full-width row justify-center stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             </div>
             
-        <container class="row space-around align-center">
+        <container class="row space-around align-center push-down-sm">
             <figure class="column">
                 <a><img class="flag" id="" src="" alt="Flag of X"></a>
                 <figcaption id="countryNameOne">Afghanistan</figcaption>
@@ -47,7 +82,7 @@
             <button class="new-round" type="button">New round</button>
         </div>
         
-        <p class="centre"> Press flags to guess country!</p>
+        <p class="centre no-top-margin"> Press flags to guess country!</p>
     </main>
     <script type="module" src="fetchFromFreeSound.js" async defer></script>
     <script type="module" src="secret.js" async defer></script>
