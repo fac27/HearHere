@@ -3,7 +3,6 @@ import { curatedCountries } from "./curatedCountries.js";
 
 localStorage.clear()
 
-
 //    ****    || MAIN FUNCTION ||   ****
 
 //  Load new round calls our update DOM functions, which subsequently call
@@ -29,10 +28,6 @@ function loadNewRound() {
   loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
 }
-
-
-
-
 
 //  ****  || UPDATE DOM FUNCTIONS || ****
 
@@ -77,11 +72,6 @@ async function displayFlags(countryOne, countryTwo) {
     //flagsArr[0].className = "flag incorrect";
     flagsArr[0].parentElement.nextElementSibling.innerHTML = capitaliseCountryName(countryTwo);
 
-    //remove existing event listeners
-    for (let i = 0; i < flagsElements.length; i++) {
-      flagsElements[i].removeEventListener('click', checkAnswer);
-    }
-
     //add new event listeners
     for (let i = 0; i < flagsElements.length; i++) {
       flagsElements[i].addEventListener('click', checkAnswer);
@@ -91,10 +81,6 @@ async function displayFlags(countryOne, countryTwo) {
     console.error(error);
   }
 }
-
-
-
-
 
 //    ****   || FETCH FUNCTIONS ||    ****
 
@@ -144,10 +130,6 @@ async function getCountryFlags(countryOne, countryTwo){
     console.error(error);
   }
 }
-
-
-
-
 
 //    ****  || FUNCTIONS THAT HANDLE USER ANSWERS ||    ****
 
@@ -222,7 +204,6 @@ function storeData (answer) {
 
 }
 
-
 function submitAnswer(answer) {
 
   storeData(answer, passCount)
@@ -242,6 +223,11 @@ function submitAnswer(answer) {
   //reset passCount and NoMoreAudio window
   passCount = 0
   document.getElementById('noAudio').classList.toggle('hide');
+  const flagsElements = document.getElementsByClassName("flag");
+  for (let i = 0; i < flagsElements.length; i++) {
+    flagsElements[i].removeEventListener('click', checkAnswer);
+  }
+
 }
 
 function checkAnswer() {
@@ -252,14 +238,7 @@ function checkAnswer() {
   }
 }
 
-
-
-
-
-
 //    ****    || HELPER FUNCTIONS ||    ****
-
-
 
 function generateRandomCountry() {
   return curatedCountries[Math.floor(Math.random() * curatedCountries.length)]
@@ -275,7 +254,3 @@ function capitaliseCountryName(country) {
   
   return arr.join(" ");
 }
-
-
-
-
