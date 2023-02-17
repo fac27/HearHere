@@ -260,6 +260,7 @@ function capitaliseCountryName(country) {
   }
   
   return arr.join(" ");
+}
 
 const btns = document.querySelectorAll('.btn');
 btns.forEach((btn) => {
@@ -272,4 +273,4 @@ btns.forEach((btn) => {
     const modal = document.getElementById(elementId);
     modal.classList.toggle('hidden');
   })  
-});
+})
