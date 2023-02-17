@@ -9,6 +9,7 @@
     <script src="fetchFromFreeSound.js"></script>
   </head>
   <body>
+    <div class="app">
     <header class="header row space-around">
         <button class="btn btn--header" type="button" name="instructions" id="instructionsButton"><i name="instructions" class="fa-solid fa-info"></i></button>
         <img class="logo" src="Assets/Default Assets (to be deleted)/HearHere.jpeg" alt="Hear Here logo">
@@ -51,11 +52,11 @@
             </ul>
         </div>
     </div>
-        <figure id="figureAudio" class="figureAudio">
-            <figcaption class="centre">Listen to the sounds:</figcaption>
+        <div id="figureAudio" class="figureAudio">
+            <h2 class="h2listen centre">Listen to the sounds:</h2>
             <div id="audioContainer" class="audio-container centre row flex-down align-center stack-sm"></div>
             <p id="noAudio" class="hide centre">No more audio. Make a guess!</p>
-        </figure>
+        </div>
             <container class="container--pass centre stack-md">
                 <button id="btnPass" class="centre centre-sm btn btn--pass">Pass</button>
                 <div id="stars"class="full-width row justify-center stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
@@ -82,6 +83,7 @@
             <button class="btn btn--newround new-round" type="button">New round</button>
         </div>
     </main>
+    </div>
     <script type="module" src="fetchFromFreeSound.js" async defer></script>
     <script type="module" src="secret.js" async defer></script>
     <script type="module" src="curatedCountries.js" async defer></script>

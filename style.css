@@ -10,13 +10,25 @@
 }
 
 body{
-    background: rgb(255,255,255);
+    background: rgb(216, 216, 216);
     font-family: 'Rubik', sans-serif;
     box-sizing: border-box;
     margin: 0;
     margin-left: auto;
     margin-right: auto;
     max-width: 35rem;
+}
+.app{
+    background-color: white;
+    height: 100vh;
+}
+
+/* Typography */
+
+.h2listen {
+    font-size: 1rem;
+    margin-block-start: 0.8em;
+    margin-block-end: 0em;
 }
 
 /* flex */
@@ -115,7 +127,7 @@ body{
 
 /* BLOCKS */
 .figure--Audio{
-    margin: 0;
+  padding-top: 1rem;
 }
 .container--pass{
     max-height: 20vh;
@@ -127,7 +139,7 @@ body{
 }
   
 .header {
-    height: 10vh;
+    max-height: 10vh;
 }
 
 /* The Modal (background) */
@@ -202,7 +214,7 @@ audio::-webkit-media-controls-panel {
 
 .logo {
     align-self: center;
-    height: 3.5rem;
+    max-height: 3.5rem;
 }
 
 .fa-star {
@@ -317,5 +329,17 @@ audio::-webkit-media-controls-panel {
     .flag {
         max-height: 4rem;
         max-width: 4rem;
+    }
+    .header{
+        height: fit-content;
+    }
+    .logo{
+        padding-top: 1rem;
+        max-height: 6rem;
+    }
+    .h2listen {
+        font-size: 1rem;
+        margin-block-start: 1.5em;
+        margin-block-end: 0.5em;
     }
 }

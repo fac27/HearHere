@@ -30,7 +30,7 @@ function loadNewRound() {
     countryTwo = generateRandomCountry();
   }
 
-  //loadAudio(countryOne);
+  loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
 }
 
