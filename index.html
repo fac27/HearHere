@@ -15,11 +15,11 @@
         
         <button class="btn btn--header" type="button" name="stats" id="statsButton"><i name="stats" class="fa-solid fa-chart-simple"></i></button>
     </header>
-    <main class="stack-lg">
+    <main>
     <div class="hidden modal--container" id="instructions">
     <div class="modal--content">
-        <button class="btn btn--header" name="instructions">X</button>
-        <h1 class="info">How to play</h1>
+        <button class="btn btn--x" name="instructions">X</button>
+        <h2 class="info">How to play</h2>
         <p class="info">Welcome to HearHere, the game that lets you travel the world through your ears! Can you guess which country a mysterious sound recording comes from? Let's find out!</p>
         <ol>
             <li>You're presented with two flags and a mysterious field recording.</li>
@@ -31,8 +31,8 @@
     </div>
     <div class="hidden modal--container" id="stats">
         <div class="modal--content">
-            <button class="btn btn--header" name="stats">X</button>
-            <h1 class="info">Stats</h1>
+            <button class="btn btn--x" name="stats">X</button>
+            <h2 class="info">Stats</h2>
             <p class="info">Here's how you're faring on your auditory journey of the world.</p>
             <ul>
                 <li class="gameStats">Games played:</li>
@@ -51,38 +51,36 @@
             </ul>
         </div>
     </div>
-        <figure id="figureAudio" class="push-down-md stack-sm">
+        <figure id="figureAudio" class="figureAudio">
             <figcaption class="centre">Listen to the sounds:</figcaption>
-            <div id="audioContainer" class="audio-container centre row flex-down align-center stack-sm push-down-sm"></div>
-            <p id="noAudio" class="hide centre no-top-margin">No more audio. Make a guess!</p>
+            <div id="audioContainer" class="audio-container centre row flex-down align-center stack-sm"></div>
+            <p id="noAudio" class="hide centre">No more audio. Make a guess!</p>
         </figure>
-            <div class="centre stack-md no-top-margin">
-                <button id="btnPass" class="centre centre-sm button">Pass</button>
+            <container class="container--pass centre stack-md">
+                <button id="btnPass" class="centre centre-sm btn btn--pass">Pass</button>
                 <div id="stars"class="full-width row justify-center stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            </div>
-            
-        <container class="row space-around align-center push-down-sm">
-            <figure class="column">
-                <a><img class="flag" id="" src="" alt="Flag of X"></a>
-                <figcaption id="countryNameOne">Afghanistan</figcaption>
-            </figure>
-            <figure class="column">
-                <a><img class="flag" id="" src=""  alt="Flag of Y"></a>
-                <figcaption id="countryNameTwo">Albania</figcaption>
-            </figure>
-        </container>
+            </container>
 
+        <container class="container--flags row space-around align-center">
+        <figure class="column">
+            <a><img class="flag" id="" src="" alt="Flag of X"></a>
+            <figcaption id="countryNameOne">Afghanistan</figcaption>
+        </figure>
+        <figure class="column">
+            <a><img class="flag" id="" src=""  alt="Flag of Y"></a>
+            <figcaption id="countryNameTwo">Albania</figcaption>
+        </figure>
+        </container>
+        <p class="centre no-top-margin"> Press flags to guess country!</p>
         <div class="hidden pop-up-window absolute on-top centre-absolute centre-vertical" id="correctAnswerPopup">
             <p>Well done! You chose the correct country.</p>
-            <button class="new-round" type="button">New round</button>
+            <button class="btn btn--newround new-round" type="button">New round</button>
         </div>
 
         <div class="hidden pop-up-window absolute on-top centre-absolute centre-vertical" id="incorrectAnswerPopup">
             <p>You chose the wrong country :(</p>
-            <button class="new-round" type="button">New round</button>
+            <button class="btn btn--newround new-round" type="button">New round</button>
         </div>
-        
-        <p class="centre no-top-margin"> Press flags to guess country!</p>
     </main>
     <script type="module" src="fetchFromFreeSound.js" async defer></script>
     <script type="module" src="secret.js" async defer></script>
