@@ -53,10 +53,10 @@
     </div>
         <figure id="figureAudio" class="push-down-md stack-sm">
             <figcaption class="centre">Listen to the sounds:</figcaption>
-            <div id="figureAudio" class="audio-container centre row flex-down align-center stack-sm push-down-sm"></div>
+            <div id="audioContainer" class="audio-container centre row flex-down align-center stack-sm push-down-sm"></div>
             <p id="noAudio" class="hide centre no-top-margin">No more audio. Make a guess!</p>
         </figure>
-            <div class="centre stack-md">
+            <div class="centre stack-md no-top-margin">
                 <button id="btnPass" class="centre centre-sm button">Pass</button>
                 <div id="stars"class="full-width row justify-center stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             </div>
@@ -82,7 +82,7 @@
             <button class="new-round" type="button">New round</button>
         </div>
         
-        <p class="centre"> Press flags to guess country!</p>
+        <p class="centre no-top-margin"> Press flags to guess country!</p>
     </main>
     <script type="module" src="fetchFromFreeSound.js" async defer></script>
     <script type="module" src="secret.js" async defer></script>

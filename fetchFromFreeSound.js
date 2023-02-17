@@ -16,7 +16,6 @@ function loadNewRound() {
   for (let i = 0; i < previousAudio.length; i++) {
     previousAudio[i].remove()
   }
-
   document.getElementById("correctAnswerPopup").style.display = "none";
   document.getElementById("incorrectAnswerPopup").style.display = "none";
   let countryOne = generateRandomCountry();
@@ -26,7 +25,7 @@ function loadNewRound() {
     countryTwo = generateRandomCountry();
   }
 
-  //loadAudio(countryOne);
+  loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
 }
 
@@ -40,7 +39,7 @@ function loadNewRound() {
 
 async function loadAudio(countryOne) {
   const soundObject = await getCountrySounds(countryOne);
-  const parentElement = document.getElementById("figureAudio");
+  const parentElement = document.getElementById("audioContainer");
   for (let i = 0; i < 5; i++){
     const soundUrl = soundObject[`preview${i}`];
     const audioPlayer = document.createElement("AUDIO");
