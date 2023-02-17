@@ -26,7 +26,7 @@ function loadNewRound() {
     countryTwo = generateRandomCountry();
   }
 
-  loadAudio(countryOne);
+  //loadAudio(countryOne);
   displayFlags(countryOne, countryTwo);
 }
 
@@ -157,7 +157,7 @@ document.getElementById("btnPass").addEventListener('click', (e)=>{
   } if (passCount === 5){
     document.getElementById('noAudio').classList.toggle('hide');
   } if (passCount > 5){
-    console.log(passCount);
+    
   }
 })
 
@@ -178,35 +178,49 @@ function storeData (answer) {
   let zeroStarGamesKey = "Zero Star Games"; 
   let zeroStarGamesValue = localStorage.getItem("Zero Star Games");
 
+  const gameStatsArr = [fiveStarGamesValue, fourStarGamesValue, threeStarGamesValue, twoStarGamesValue, oneStarGamesValue,zeroStarGamesValue];
+  const gameKeyArr = [fiveStarGamesKey, fourStarGamesKey, threeStarGamesKey, twoStarGamesKey, oneStarGamesKey, zeroStarGamesKey];
+  
+  //increase gamesplayed first
+  addToScores(gamesPlayedKey, gamesPlayedValue)
+  
+  gameStatsArr.forEach((stat, index) => {
+    if (answer === 'correct' && passCount === index){
+      //if the answer is right, update relevant key
+      addToScores(gameKeyArr[index], stat);
+    } else if (answer === 'incorrect'){
+      //if incorrect update zerostargames
+      addToScores(zeroStarGamesKey, zeroStarGamesValue);}
+  })
+
   // function to add to numbers of scores for each star type
   function addToScores(key, value) {
     value = Number(value) + 1;
     localStorage.setItem(key, value);
   }
-
-  addToScores(gamesPlayedKey, gamesPlayedValue);
-
-  if(answer === "correct" && passCount === 0) {
-    addToScores(fiveStarGamesKey, fiveStarGamesValue);
-  }
-  else if (answer === "correct" && passCount === 1) {
-    addToScores(fourStarGamesKey, fourStarGamesValue);
-  }
-  else if (answer === "correct" && passCount === 2) {
-    addToScores(threeStarGamesKey, threeStarGamesValue);
-  }
-  else if (answer === "correct" && passCount === 3) {
-    addToScores(twoStarGamesKey, twoStarGamesValue);
-  }
-  else if (answer === "correct" && passCount > 3) {
-    addToScores(oneStarGamesKey, oneStarGamesValue);
-  }
-  else {
-    addToScores(zeroStarGamesKey, zeroStarGamesValue);
-  }
-  console.table(localStorage);
+  const gameArr = [
+    Number(localStorage['Five Star Games']),
+    Number(localStorage['Four Star Games']),
+    Number(localStorage['Three Star Games']),
+    Number(localStorage['Two Star Games']),
+    Number(localStorage['One Star Games']),
+    Number(localStorage['Zero Star Games'])
+]
+  updateStatsModal(gameArr);
 }
 
+function updateStatsModal(Arr){
+  const bars = document.querySelectorAll('.bar')
+  const gamesplayed = Number(localStorage['Games Played'])
+  bars.forEach((bar, index) => {
+    if (!isNaN(Arr[index])){
+      bar.style.width = `${(Arr[index]/gamesplayed) * 100}%`
+      bar.innerHTML = `${Math.floor((Arr[index]/gamesplayed) * 100)}%`
+    }
+  })
+  
+
+}
 
 function submitAnswer(answer) {
 
@@ -253,6 +267,24 @@ function capitaliseCountryName(country) {
   
   return arr.join(" ");
 }
+
+
+
+
+
+const btns = document.querySelectorAll('.btn');
+btns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    let elementId = e.target.name;
+    //check if the user clicked on the icon element, if so then target name attribute of the 
+    //corresponding btn instead.
+    if (e.target.name === undefined){ elementId = e.target.parentElement.name}
+    //  display/hide modal window
+    const modal = document.getElementById(elementId);
+    modal.classList.toggle('hidden');
+  })  
+});
+
 
 
 

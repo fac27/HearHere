@@ -12,6 +12,7 @@
 body{
     background: rgb(255,255,255);
     font-family: 'Rubik', sans-serif;
+    box-sizing: border-box;
     margin: 0;
     max-width: 500px;
     margin-left: auto;
@@ -120,6 +121,47 @@ body{
     height: 12vh;
 }
 
+/* The Modal (background) */
+.modal--container {
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 1rem;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgb(255, 252, 240);  
+    background-color: rgba(250,250,250,0.5);
+  }
+/* Modal Content */
+.modal--content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    overflow: auto;
+    padding: 2rem;
+    height: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+.modal--content > ul {
+    list-style-type: none;
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-10vh; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-10vh; opacity:0}
+    to {top:0; opacity:1}
+  }
+  
+
 /* DISPLAY */
 
 .hidden {
@@ -158,7 +200,55 @@ body{
     height: 18vh;
 }
 
-.stars > i {
+.button {
+    width: 5rem;
+    padding: 0.5rem;
+    background-color: white;
+    border: solid 0.1rem black;
+    border-radius: 0.3rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: var(--color2);
+    color: var(--color1);
+}
+
+.audio-container {
+    height: 15rem;
+    width: 18rem;
+    margin-bottom: 0;
+}
+
+.logo {
+    width: 18vh;
+    height: 18vh;
+}
+
+.bar--container{
+    width: 100%;
+    height: 1.6rem;
+    background-color: rgba(181, 181, 181, 0.19);
+    border-radius: 4%;
+    -webkit-border-radius: 4%;
+    -moz-border-radius: 4%;
+    -ms-border-radius: 4%;
+    -o-border-radius: 4%;
+}
+    .bar{
+        width: 0%;
+        height: 1.2rem;
+        padding: 0.2rem;
+        background-color: gold;
+        border-radius: 4%;
+        -webkit-border-radius: 8%;
+        -moz-border-radius: 8%;
+        -ms-border-radius: 8%;
+        -o-border-radius: 8%;
+}
+
+.fa-star{
     color: gold;
 }
 
