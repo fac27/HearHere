@@ -2,19 +2,21 @@
 
 :root {
     /*temp names while we work on color scheme*/
-    --color1: #9cf3f4;
-    --color2: #bc7bdf;
-    --btncolor: #7b7eec;
+    --color1: rgb(255, 255, 255);
+    --color2: #fa6200;
+    --btncolor: rgb(0, 160, 0);
     --color4: #04081a;
     --color5: #e18de0;
-
 }
 
 body{
     background: rgb(255,255,255);
     font-family: 'Rubik', sans-serif;
-    height: 100vh;
     margin: 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 /* flex */
@@ -46,6 +48,10 @@ body{
     align-items: center;
 }
 
+.flex-down {
+    flex-direction: column;
+}
+
 /* positioning */
 
 .centre {
@@ -53,19 +59,21 @@ body{
     margin-right: auto;
     text-align: center;
 }
-    .centre-sm{
-        width: 25vw;
-    }
 
-    .centre-absolute {
-        left: 0; 
-        right: 0; 
-        margin-left: auto; 
-        margin-right: auto;
-    }
-    .centre-vertical {
-        top: 40%;
-    }
+.centre-sm{
+    width: 25vw;
+}
+
+.centre-absolute {
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.centre-vertical {
+    top: 40%;
+}
 
 .absolute {
     position: absolute;
@@ -81,22 +89,36 @@ body{
 
 /* stack */
 
-.stack-sm > * + * {
+.stack-sm > * + *  {
     margin-top: 0.25rem;
-  }
-  .stack-md > * + * {
-    margin-top: 2rem;
-  }
-  .stack-lg {
-    margin-top: 5rem;
-  }
+}
 
+.stack-md > * + * {
+    margin-top: 2rem;
+}
+
+.stack-lg > * + * {
+    margin-top: 5rem;
+}
+
+.push-down-sm {
+    margin-top: 1.2rem;
+}
+
+.push-down-md {
+    margin-top: 4rem;
+}
+
+.no-top-margin {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
 
 /* BLOCKS */
   
 .header {
     height: 12vh;
-  }
+}
 
 /* DISPLAY */
 
@@ -104,13 +126,43 @@ body{
     display: none;
 }
 
+.hide {
+    visibility: hidden;
+}
+
 /* ELEMENTS */
+
+.button {
+    width: 5rem;
+    padding: 0.5rem;
+    background-color: white;
+    border: solid 0.1rem black;
+    border-radius: 0.3rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: var(--color2);
+    color: var(--color1);
+}
+
+.audio-container {
+    height: 15rem;
+    width: 18rem;
+    margin-bottom: 0;
+}
+
+.logo {
+    width: 18vh;
+    height: 18vh;
+}
 
 .stars > i {
     color: gold;
 }
 
-  .flag {
+.flag {
     border: 2px solid black;
     height: 2.5rem;
     width: 4rem;
@@ -121,21 +173,21 @@ body{
     -o-border-radius: 4%;
 }
 
-    .pop-up-window {
-        background-color: white;
-        border: 2px solid black;
-        border-radius: 4%;
-        width: 12rem;
-        padding: 0.8rem;
-    }
+.pop-up-window {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 4%;
+    width: 12rem;
+    padding: 0.8rem;
+}
 
 
-  .btn--header {
-    height: 2.2rem;
-    width: 2.2rem;
+.btn--header {
+    height: 3rem;
+    width: 3rem;
     background-color: transparent;
     align-self: end;
-    border: 2px dotted var(--btncolor);
+    border: 2px dotted var(--color2);
     transition: 300ms;
     border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -147,9 +199,10 @@ body{
     -ms-transition: 300ms;
     -o-transition: 300ms;
 }
-    .btn--header:hover{
-        box-shadow: none;
-        background-color: var(--btncolor);
+
+.btn--header:hover{
+    box-shadow: none;
+    background-color: var(--color2);
 }
 
 

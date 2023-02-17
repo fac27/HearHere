@@ -155,7 +155,7 @@ document.getElementById("btnPass").addEventListener('click', (e)=>{
     stars.at(passCount * -1).classList.remove("fa-solid");
     stars.at(passCount * -1).classList.add('fa-regular');
   } if (passCount === 5){
-    document.getElementById('noAudio').classList.toggle('hidden');
+    document.getElementById('noAudio').classList.toggle('hide');
   } if (passCount > 5){
     console.log(passCount);
   }
@@ -226,7 +226,7 @@ function submitAnswer(answer) {
   }
   //reset passCount and NoMoreAudio window
   passCount = 0
-  document.getElementById('noAudio').classList.toggle('hidden');
+  document.getElementById('noAudio').classList.toggle('hide');
 }
 
 function checkAnswer() {
