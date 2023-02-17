@@ -12,6 +12,12 @@ loadNewRound()
 
 function loadNewRound() {
   const previousAudio = document.querySelectorAll("audio");  
+  const starsHTMLColl = document.getElementById('stars').children;
+  let stars = Array.prototype.slice.call(starsHTMLColl, 0);
+  for (const star of stars){
+    star.classList.remove("fa-regular");
+    star.classList.add('fa-solid');
+  }
   for (let i = 0; i < previousAudio.length; i++) {
     previousAudio[i].remove()
   }
@@ -143,10 +149,8 @@ document.getElementById("btnPass").addEventListener('click', (e)=>{
     document.getElementById(`audioplayer${passCount}`).style.display = 'block';    
     stars.at(passCount * -1).classList.remove("fa-solid");
     stars.at(passCount * -1).classList.add('fa-regular');
-  } if (passCount === 5){
+  } if (passCount >= 5 && document.getElementById('noAudio').classList.contains('hide')){
     document.getElementById('noAudio').classList.toggle('hide');
-  } if (passCount > 5){
-    
   }
 })
 
