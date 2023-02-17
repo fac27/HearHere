@@ -11,21 +11,22 @@
   <body>
     <header class="header row space-around">
         <button class="btn--header" type="button" name="instructions" id="instructionsButton"><i class="fa-solid fa-info"></i></button>
-        <img src="Assets/Default Assets (to be deleted)/HearHere.png" alt="Hear Here logo">
+        <img class="logo" src="Assets/Default Assets (to be deleted)/HearHere.jpeg" alt="Hear Here logo">
         
         <button class="btn--header" type="button" name="stats" id="statsButton"><i class="fa-solid fa-chart-simple"></i></button>
     </header>
-    <main class="stack-lg">
-        <figure id="figureAudio" class="stack-sm">
+    <main>
+        <figure class="push-down-md stack-sm">
             <figcaption class="centre">Listen to the sounds:</figcaption>
-            <div id="noAudio" class="hidden"><p>No More Audio!</p></div>
+            <div id="figureAudio" class="audio-container centre row flex-down align-center stack-sm push-down-sm"></div>
+            <p id="noAudio" class="hide centre no-top-margin">No more audio. Make a guess!</p>
         </figure>
             <div class="centre stack-md">
-                <button id="btnPass" class="centre centre-sm">Pass</button>
+                <button id="btnPass" class="centre centre-sm button">Pass</button>
                 <div id="stars"class="full-width row justify-center stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             </div>
             
-        <container class="stack-lg row space-around align-center">
+        <container class="row space-around align-center">
             <figure class="column">
                 <a><img class="flag" id="" src="" alt="Flag of X"></a>
                 <figcaption id="countryNameOne">Afghanistan</figcaption>
