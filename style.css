@@ -10,13 +10,25 @@
 }
 
 body{
-    background: rgb(255,255,255);
+    background: rgb(216, 216, 216);
     font-family: 'Rubik', sans-serif;
     box-sizing: border-box;
     margin: 0;
-    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    max-width: 35rem;
+}
+.app{
+    background-color: white;
+    height: 100vh;
+}
+
+/* Typography */
+
+.h2listen {
+    font-size: 1rem;
+    margin-block-start: 0.8em;
+    margin-block-end: 0em;
 }
 
 /* flex */
@@ -94,7 +106,7 @@ body{
 }
 
 .stack-md > * + * {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .stack-lg > * + * {
@@ -111,13 +123,23 @@ body{
 
 .no-top-margin {
     margin-top: 0;
-    margin-bottom: 1.5rem;
 }
 
 /* BLOCKS */
+.figure--Audio{
+  padding-top: 1rem;
+}
+.container--pass{
+    max-height: 20vh;
+    display: flex;
+    flex-direction: column;
+}
+.container--flags{
+    height: 20vh;
+}
   
 .header {
-    height: 12vh;
+    max-height: 10vh;
 }
 
 /* The Modal (background) */
@@ -140,7 +162,8 @@ body{
     margin: auto;
     overflow: auto;
     padding: 2rem;
-    height: 70%;
+    max-width: 20rem;
+    height: fit-content;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -175,40 +198,46 @@ body{
 
 /* ELEMENTS */
 
-.button {
-    width: 5rem;
-    padding: 0.5rem;
-    background-color: white;
-    border: solid 0.1rem black;
-    border-radius: 0.3rem;
-    font-family: 'Rubik', sans-serif;
-    font-weight: bold;
+.stats--ListItem{
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }
 
-.button:hover {
-    background-color: var(--color2);
-    color: var(--color1);
-}
+audio::-webkit-media-controls-panel {
+    background-color: white;
+  }
+  audio::-webkit-media-controls-play-button {
+    background-color: rgba(229, 229, 229, 0.191);
+    border-radius: 50%;
+  }
+
 
 .audio-container {
-    height: 15rem;
-    width: 18rem;
+    max-height: 35vh;
     margin-bottom: 0;
 }
 
 .logo {
-    width: 18vh;
-    height: 18vh;
+    align-self: center;
+    max-height: 3.5rem;
 }
 
 .fa-star {
     color: gold;
 }
+.fa-circle-xmark{
+    color:#fa6200
+}
+.gameStats{
+    font-family: monospace;
+    font-size: 1rem;
+}
 
 .bar--container{
-    width: 100%;
+    width: 90%;
     height: 1.6rem;
-    background-color: rgba(181, 181, 181, 0.19);
+    background-color: rgba(167, 167, 167, 0.18);
     border-radius: 4%;
     -webkit-border-radius: 4%;
     -moz-border-radius: 4%;
@@ -219,13 +248,16 @@ body{
         width: 0%;
         height: 1.2rem;
         padding: 0.2rem;
-        background-color: gold;
+        background-color: orange;
         border-radius: 4%;
         -webkit-border-radius: 8%;
         -moz-border-radius: 8%;
         -ms-border-radius: 8%;
         -o-border-radius: 8%;
 }
+    .bar__fail{
+        background-color:#fa6200;
+    }
 
 .flag {
     border: 2px solid black;
@@ -240,34 +272,70 @@ body{
 
 .pop-up-window {
     background-color: white;
-    border: 2px solid black;
-    border-radius: 4%;
+    border-radius: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animateside;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animateside;
+    animation-duration: 0.4s;
     width: 12rem;
     padding: 0.8rem;
+    -webkit-border-radius: 1%;
+    -moz-border-radius: 1%;
+    -ms-border-radius: 1%;
+    -o-border-radius: 1%;
 }
+@-webkit-keyframes animateside {
+    from {left:-10vh; opacity:0} 
+    to {left:0; opacity:1}
+  }
+  
+  @keyframes animateside {
+    from {left:-10vh; opacity:0}
+    to {left:0; opacity:1}
+  }
+  
 
+.btn{
+    background-color: rgb(239, 239, 239);
+    border: none;
+}
+.btn:active{
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
 
 .btn--header {
-    height: 3rem;
-    width: 3rem;
-    background-color: transparent;
-    align-self: end;
-    border: 2px dotted var(--color2);
-    transition: 300ms;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    -webkit-transition: 300ms;
-    -moz-transition: 300ms;
-    -ms-transition: 300ms;
-    -o-transition: 300ms;
+    height: 2.3rem;
+    width: 2.3rem;
+    align-self: center;
+    border-radius: 9%;
+    -webkit-border-radius: 9%;
+    -moz-border-radius: 9%;
+    -ms-border-radius: 9%;
+    -o-border-radius: 9%;
 }
 
-.btn--header:hover{
-    box-shadow: none;
-    background-color: var(--color2);
+.btn--pass {
+    width: 5rem;
+    padding: 0.5rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+.btn--newround{
+    height: 2rem;
+    padding: 0.5rem;
+}
+.btn--x{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 9%;
+    -webkit-border-radius: 9%;
+    -moz-border-radius: 9%;
+    -ms-border-radius: 9%;
+    -o-border-radius: 9%;
 }
 
 
@@ -277,5 +345,17 @@ body{
     .flag {
         max-height: 4rem;
         max-width: 4rem;
+    }
+    .header{
+        height: fit-content;
+    }
+    .logo{
+        padding-top: 1rem;
+        max-height: 6rem;
+    }
+    .h2listen {
+        font-size: 1rem;
+        margin-block-start: 1.5em;
+        margin-block-end: 0.5em;
     }
 }
