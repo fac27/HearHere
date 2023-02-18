@@ -270,6 +270,10 @@ audio::-webkit-media-controls-panel {
     -o-border-radius: 4%;
 }
 
+.flag:hover {
+    cursor: pointer;
+}
+
 .pop-up-window {
     background-color: white;
     border-radius: 1%;
@@ -305,6 +309,10 @@ audio::-webkit-media-controls-panel {
     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
     box-shadow: inset 0px 0px 5px #c1c1c1;
     outline: none;
+}
+
+.btn:hover{
+    cursor: pointer;
 }
 
 .btn--header {
