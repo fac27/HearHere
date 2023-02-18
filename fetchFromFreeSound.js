@@ -96,9 +96,16 @@ async function getCountrySounds(countryOne) {
       const soundsObj = []
       const response = await fetch(`https://freesound.org/apiv2/search/text/?query=${countryOne}&token=${key}`);
       const sounds = await response.json();
+      let usedSounds = [];
       for (let i = 0; i < 5; i++){
-        const randomSound = sounds.results[Math.floor(Math.random() * sounds.results.length)];
-        const soundId = randomSound.id;
+        let randomSound = sounds.results[Math.floor(Math.random() * sounds.results.length)];
+        let soundId = randomSound.id;
+        while(usedSounds.includes(soundId)) {
+          randomSound = sounds.results[Math.floor(Math.random() * sounds.results.length)];
+          soundId = randomSound.id; 
+        }
+        usedSounds.push(soundId)
+        console.log(usedSounds)
         const soundResponse = await fetch(`https://freesound.org/apiv2/sounds/${soundId}?token=${key}`);
         const soundData = await soundResponse.json();
         const soundPreviewUrl = soundData.previews['preview-hq-mp3'];
@@ -269,12 +276,13 @@ function capitaliseCountryName(country) {
 }
 
 const btns = document.querySelectorAll('.btn');
+
 btns.forEach((btn) => {
   btn.addEventListener('click', (e) => {
     let elementId = e.target.name;
     //check if the user clicked on the icon element, if so then target name attribute of the 
     //corresponding btn instead.
-    if (e.target.name === undefined){ elementId = e.target.parentElement.name}
+    if (e.target.name === undefined){elementId = e.target.parentElement.name}
     //  display/hide modal window
     const modal = document.getElementById(elementId);
     modal.classList.toggle('hidden');
