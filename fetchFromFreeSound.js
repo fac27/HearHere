@@ -204,6 +204,7 @@ function storeData (answer) {
 
 function updateStatsModal(Arr){
   const bars = document.querySelectorAll('.bar')
+  const gamesplayedElement = document.getElementById('gamesPlayed')
   const gamesplayed = Number(localStorage['Games Played'])
   bars.forEach((bar, index) => {
     if (!isNaN(Arr[index])){
@@ -211,6 +212,7 @@ function updateStatsModal(Arr){
       bar.innerHTML = `${Math.floor((Arr[index]/gamesplayed) * 100)}%`
     }
   })
+  gamesplayedElement.innerHTML = `Games played: ${gamesplayed}`;
   
 
 }

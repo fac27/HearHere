@@ -198,6 +198,12 @@ body{
 
 /* ELEMENTS */
 
+.stats--ListItem{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
 audio::-webkit-media-controls-panel {
     background-color: white;
   }
@@ -220,9 +226,16 @@ audio::-webkit-media-controls-panel {
 .fa-star {
     color: gold;
 }
+.fa-circle-xmark{
+    color:#fa6200
+}
+.gameStats{
+    font-family: monospace;
+    font-size: 1rem;
+}
 
 .bar--container{
-    width: 100%;
+    width: 90%;
     height: 1.6rem;
     background-color: rgba(167, 167, 167, 0.18);
     border-radius: 4%;
@@ -242,6 +255,9 @@ audio::-webkit-media-controls-panel {
         -ms-border-radius: 8%;
         -o-border-radius: 8%;
 }
+    .bar__fail{
+        background-color:#fa6200;
+    }
 
 .flag {
     border: 2px solid black;

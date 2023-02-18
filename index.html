@@ -35,20 +35,62 @@
             <button class="btn btn--x" name="stats">X</button>
             <h2 class="info">Stats</h2>
             <p class="info">Here's how you're faring on your auditory journey of the world.</p>
-            <ul>
-                <li class="gameStats">Games played:</li>
-                <li class="gameStats" id="5stars">5 <i class="fa-solid fa-star"></i></li>
-                <div class="bar--container"><div class="bar"></div></div>
-                <li class="gameStats" id="4stars">4 <i class="fa-solid fa-star"></i></li>
-                <div class="bar--container"><div class="bar"></div></div>
-                <li class="gameStats" id="3stars">3 <i class="fa-solid fa-star"></i></li>
-                <div class="bar--container"><div class="bar"></div></div>
-                <li class="gameStats" id="2stars">2 <i class="fa-solid fa-star"></i></li>
-                <div class="bar--container"><div class="bar"></div></div>
-                <li class="gameStats" id="1stars">1 <i class="fa-solid fa-star"></i></li>
-                <div class="bar--container"><div class="bar"></div></div>
-                <li class="gameStats" id="0stars">Fails: </li>
-                <div class="bar--container"><div class="bar"></div></div>
+            <ul class="stack-sm">
+                <li id="gamesPlayed" class="">Games played:</li>
+                <li class="gameStats" id="5stars">
+                    <div class="stats--ListItem">
+                        5 <i class="fa-solid fa-star"></i>
+                        <div class="bar--container">
+                            <div class="bar">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="gameStats" id="4stars">
+                    <div class="stats--ListItem">
+                        4 <i class="fa-solid fa-star"></i>
+                        <div class="bar--container">
+                            <div class="bar">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="gameStats" id="3stars">
+                    <div class="stats--ListItem">
+                        3 <i class="fa-solid fa-star"></i>
+                        <div class="bar--container">
+                            <div class="bar">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="gameStats" id="2stars">
+                    <div class="stats--ListItem">
+                        2 <i class="fa-solid fa-star"></i>
+                        <div class="bar--container">
+                            <div class="bar">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="gameStats" id="1stars">
+                    <div class="stats--ListItem">
+                        1 <i class="fa-solid fa-star"></i>
+                        <div class="bar--container">
+                            <div class="bar">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="gameStats" id="0stars">
+                    <div class="stats--ListItem">
+                        0<i class="fa-regular fa-star"></i>
+                        <div class="bar--container">
+                            <div class="bar bar__fail">
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
