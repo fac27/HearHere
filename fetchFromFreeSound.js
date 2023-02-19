@@ -242,7 +242,9 @@ function submitAnswer(answer) {
   }
   //reset passCount and NoMoreAudio window
   passCount = 0
-  document.getElementById('noAudio').classList.toggle('hide');
+  if (!document.getElementById('noAudio').classList.contains('hide')){
+    document.getElementById('noAudio').classList.toggle('hide');
+  }
   const flagsElements = document.getElementsByClassName("flag");
   for (let i = 0; i < flagsElements.length; i++) {
     flagsElements[i].removeEventListener('click', checkAnswer);
