@@ -51,6 +51,8 @@ async function loadAudio(countryOne) {
     parentElement.appendChild(audioPlayer);
   }
   document.getElementById("audioplayer0").style.display = "block"
+  const loadingScreen = document.getElementById("loadingScreen")
+      loadingScreen.classList.toggle("hidden")
 }
 
 async function displayFlags(countryOne, countryTwo) {
@@ -93,6 +95,8 @@ async function displayFlags(countryOne, countryTwo) {
 
 async function getCountrySounds(countryOne) {
     try {
+      const loadingScreen = document.getElementById("loadingScreen")
+      loadingScreen.classList.toggle("hidden")
       const soundsObj = []
       const response = await fetch(`https://freesound.org/apiv2/search/text/?query=${countryOne}&token=${key}`);
       const sounds = await response.json();
@@ -244,7 +248,7 @@ function submitAnswer(answer) {
   passCount = 0
   if (!document.getElementById('noAudio').classList.contains('hide')){
     document.getElementById('noAudio').classList.toggle('hide');
-  }
+  }  
   const flagsElements = document.getElementsByClassName("flag");
   for (let i = 0; i < flagsElements.length; i++) {
     flagsElements[i].removeEventListener('click', checkAnswer);
