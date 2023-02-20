@@ -86,6 +86,7 @@ async function displayFlags(countryOne, countryTwo) {
 
   } catch (error) {
     console.error(error);
+    document.getElementById("error").classList.toggle("hidden");
   }
 }
 
@@ -109,7 +110,6 @@ async function getCountrySounds(countryOne) {
           soundId = randomSound.id; 
         }
         usedSounds.push(soundId)
-        console.log(usedSounds)
         const soundResponse = await fetch(`https://freesound.org/apiv2/sounds/${soundId}?token=${key}`);
         const soundData = await soundResponse.json();
         const soundPreviewUrl = soundData.previews['preview-hq-mp3'];
@@ -118,6 +118,7 @@ async function getCountrySounds(countryOne) {
       return soundsObj;
     } catch (error) {
       console.error(error);
+      document.getElementById("error").classList.toggle("hidden");
     }
   }
 
@@ -143,7 +144,8 @@ async function getCountryFlags(countryOne, countryTwo){
     return {flagOne: flagURLOne, flagTwo: flagURLTwo};
     
 } catch (error) {
-    console.error(error);
+  console.error(error);
+  document.getElementById("error").classList.toggle("hidden");
   }
 }
 
