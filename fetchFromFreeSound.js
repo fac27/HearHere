@@ -296,3 +296,28 @@ btns.forEach((btn) => {
     modal.classList.toggle('hidden');
   })  
 })
+
+// Function to preview star disappearing when hovering on pass button
+
+document.getElementById("btnPass").addEventListener("mouseover", hideOneStar)
+document.getElementById("btnPass").addEventListener("mouseout", returnOneStar)
+
+function hideOneStar() {
+  const starsHTMLColl = document.getElementById('stars').children;
+  let stars = Array.prototype.slice.call(starsHTMLColl, 0);
+
+  if (passCount < 4){ 
+  stars.at(4 - passCount).classList.remove("fa-solid");
+  stars.at(4 - passCount).classList.add('fa-regular');
+  } 
+}
+
+function returnOneStar() {
+  const starsHTMLColl = document.getElementById('stars').children;
+  let stars = Array.prototype.slice.call(starsHTMLColl, 0);
+
+  if (passCount < 4){ 
+  stars.at(4 - passCount).classList.remove("fa-regular");
+  stars.at(4 - passCount).classList.add('fa-solid');
+  } 
+}
