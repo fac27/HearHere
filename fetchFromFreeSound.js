@@ -99,7 +99,7 @@ async function getCountrySounds(countryOne) {
       const loadingScreen = document.getElementById("loadingScreen")
       loadingScreen.classList.toggle("hidden")
       const soundsObj = []
-      const response = await fetch(`https://freesound.org/apiv2/search/text/?query=${countryOne}&token=${key}`);
+      const response = await fetch(`https://dmn4bejkmfmkzlfangvzm5znpe0kgwik.lambda-url.eu-west-2.on.aws/${countryOne}`);
       const sounds = await response.json();
       let usedSounds = [];
       for (let i = 0; i < 5; i++){
@@ -294,6 +294,11 @@ btns.forEach((btn) => {
     //  display/hide modal window
     const modal = document.getElementById(elementId);
     modal.classList.toggle('hidden');
+    // toggle aria-expanded
+    var expanded = e.target.getAttribute("aria-expanded");
+    if (expanded == "true") { expanded = "false" }
+    else { expanded = "true" }
+    e.target.setAttribute("aria-expanded", expanded);
   })  
 })
 
